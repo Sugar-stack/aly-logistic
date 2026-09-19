@@ -5,7 +5,7 @@ Modifiez ce fichier pour changer le nom, les contacts, WhatsApp et les tarifs.
 
 # --- Identité ---
 COMPANY_NAME = "Aly IT Services"
-COMPANY_INITIALS = "AL"
+COMPANY_INITIALS = "AIT"
 COMPANY_TAGLINE = "Services informatiques à Dakar"
 COMPANY_SHORT = "Installation Windows, logiciels et optimisation PC"
 
@@ -138,4 +138,4 @@ SEO_KEYWORDS = (
     "support informatique Sénégal, technicien informatique Dakar"
 )
 
-SITE_URL = "https://alylogistic.sn"
+SITE_URL = "https://aly-tech.vercel.app/"
