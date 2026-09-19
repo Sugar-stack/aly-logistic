@@ -255,3 +255,7 @@ def sitemap():
 
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
+
+# Vercel requires the app to be exported at module level
+# This is the WSGI application entry point
+application = app
