@@ -4,7 +4,7 @@ Modifiez ce fichier pour changer le nom, les contacts, WhatsApp et les tarifs.
 """
 
 # --- Identité ---
-COMPANY_NAME = "Aly Logistic"
+COMPANY_NAME = "Aly IT Services"
 COMPANY_INITIALS = "AL"
 COMPANY_TAGLINE = "Services informatiques à Dakar"
 COMPANY_SHORT = "Installation Windows, logiciels et optimisation PC"
