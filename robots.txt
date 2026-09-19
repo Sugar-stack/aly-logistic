@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+Disallow: /demande
+Disallow: /admin
+
+Sitemap: https://alylogistic.sn/sitemap.xml

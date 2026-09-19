@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block title %}{{ seo_title }}{% endblock %}</title>
+  <meta name="description" content="{{ seo_description }}">
+  <meta name="keywords" content="{{ seo_keywords }}">
+  <meta name="author" content="{{ company }}">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="{% block canonical %}{{ site_url }}/{% endblock %}">
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="{{ site_url }}">
+  <meta property="og:title" content="{{ seo_title }}">
+  <meta property="og:description" content="{{ seo_description }}">
+  <meta property="og:locale" content="fr_SN">
+  <meta property="og:site_name" content="{{ company }}">
+
+  <!-- Twitter -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:url" content="{{ site_url }}">
+  <meta name="twitter:title" content="{{ seo_title }}">
+  <meta name="twitter:description" content="{{ seo_description }}">
+
+  <!-- Local SEO -->
+  <meta name="geo.region" content="SN-DK">
+  <meta name="geo.placename" content="Dakar">
+  <meta name="geo.position" content="14.7167;-17.4677">
+  <meta name="ICBM" content="14.7167, -17.4677">
+
+  <meta name="theme-color" content="#0a1628">
+  <link rel="icon" href="{{ url_for('static', filename='img/favicon.svg') }}" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,560;0,9..144,700;1,9..144,560&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+  <!-- Schema.org Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "ComputerRepairService",
+    "name": "{{ company }}",
+    "description": "{{ seo_description }}",
+    "url": "{{ site_url }}",
+    "telephone": "{{ phone_tel }}",
+    "email": "{{ email }}",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dakar",
+      "addressRegion": "Dakar",
+      "addressCountry": "SN",
+      "streetAddress": "Dieuppeul 2"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": "14.7167",
+      "longitude": "-17.4677"
+    },
+    "areaServed": [
+      "Dakar",
+      "Dieuppeul 2",
+      "Dakar-Plateau",
+      "Almadies",
+      "Mermoz",
+      "Sacré-Cœur",
+      "Sénégal"
+    ],
+    "priceRange": "5,000 FCFA - 15,000 FCFA",
+    "openingHours": "Mo-Su 08:00-20:00",
+    "availableLanguage": ["French", "Wolof"],
+    "serviceType": [
+      "Installation Windows",
+      "Installation de logiciels",
+      "Optimisation PC",
+      "Maintenance informatique",
+      "Dépannage PC"
+    ]
+  }
+  </script>
+</head>
+<body>
+  <a class="skip-link" href="#contenu">Aller au contenu</a>
+  {% include "components/nav.html" %}
+  <main id="contenu">
+    {% block content %}{% endblock %}
+  </main>
+  {% include "components/footer.html" %}
+  {% include "components/whatsapp.html" %}
+  <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>

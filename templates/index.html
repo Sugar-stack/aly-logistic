@@ -1,0 +1,294 @@
+{% extends "base.html" %}
+{% from "components/icons.html" import icon %}
+
+{% block content %}
+<section class="hero" id="accueil">
+  <div class="container hero-grid">
+    <div class="hero-copy">
+      <p class="eyebrow">{{ company }} · {{ city }}</p>
+      <h1>Installation Windows Dakar | Logiciels PC | Optimisation | Informaticien à domicile</h1>
+      <p class="lead">Expert informatique à Dakar, basé à Dieuppeul 2. Installation Windows 10/11, logiciels professionnels, optimisation PC, configuration freelance. Intervention rapide dans tout Dakar.</p>
+      <div class="hero-cta">
+        <a class="btn btn-primary" href="#demande">Demander une prestation</a>
+        <a class="btn btn-whatsapp" href="https://mail.google.com/mail/?view=cm&fs=1&to=alylatyr@gmail.com" target="_blank" rel="noopener"><i class="fas fa-envelope"></i> Contact Gmail</a>
+      </div>
+      <p class="legal-note">Licences officielles disponibles. Installation Windows et logiciels professionnels à Dakar.</p>
+      <ul class="trust-row">
+        <li>✓ Informaticien professionnel à Dakar</li>
+        <li>✓ Intervention à domicile Dieuppeul 2 et tout Dakar</li>
+        <li>✓ Devis gratuit et transparent</li>
+      </ul>
+    </div>
+    <div class="hero-art" aria-hidden="true">
+      {% include "components/laptop.html" %}
+    </div>
+  </div>
+</section>
+
+<section class="section advantages" id="avantages">
+  <div class="container">
+    <div class="adv-grid">
+      {% for item in advantages %}
+      <article class="adv-card reveal">
+        <span class="icon-wrap">{{ icon(item.icon) }}</span>
+        <h2>{{ item.title }}</h2>
+        <p>{{ item.text }}</p>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="services">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Prestations</p>
+      <h2>Nos services</h2>
+      <p>Des interventions claires pour étudiants, équipes et petites entreprises à Dakar.</p>
+    </header>
+    <div class="cards-3">
+      {% for s in services %}
+      <article class="card service-card reveal" id="service-{{ s.id }}">
+        <span class="icon-wrap">{{ icon(s.icon) }}</span>
+        <h3>{{ s.name }}</h3>
+        <p>{{ s.summary }}</p>
+        <ul class="check-list">
+          {% for p in s.points %}
+          <li>{{ p }}</li>
+          {% endfor %}
+        </ul>
+        {% if s.examples %}
+        <p class="chip-label">Exemples (licences valides si payants)</p>
+        <div class="chips">
+          {% for ex in s.examples %}
+          <span class="chip">{{ ex }}</span>
+          {% endfor %}
+        </div>
+        {% endif %}
+        {% if s.legal %}
+        <p class="legal-note">{{ s.legal }}</p>
+        {% endif %}
+        <a class="btn btn-primary" href="#demande" data-service="{{ s.id }}">{{ s.cta }}</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="tarifs">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Prix d'entrée</p>
+      <h2>Nos tarifs</h2>
+      <p>{{ price_disclaimer }}</p>
+    </header>
+    <div class="cards-price">
+      {% for p in prices %}
+      <article class="card price-card reveal {% if p.highlight %}featured{% endif %} {% if p.id == 'complete' %}ac-themed{% endif %}">
+        {% if p.highlight %}<p class="badge">Le plus demandé</p>{% endif %}
+        {% if p.id == 'complete' %}<p class="badge ac-badge">🏴‍☠️ Gaming</p>{% endif %}
+        <h3>{{ p.name }}</h3>
+        <p class="price">À partir de <strong>{{ format_fcfa(p.from_amount) }}</strong>{{ p.unit }}</p>
+        <ul class="check-list">
+          {% for f in p.features %}
+          <li>{{ f }}</li>
+          {% endfor %}
+        </ul>
+        <a class="btn {% if p.highlight %}btn-primary{% else %}btn-ghost{% endif %}" href="#demande" data-service="{{ p.id }}">Demander une installation</a>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="methode">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Parcours</p>
+      <h2>Comment ça marche ?</h2>
+    </header>
+    <ol class="steps">
+      {% for step in steps %}
+      <li class="reveal">
+        <span class="step-num">{{ step.num }}</span>
+        <h3>{{ step.title }}</h3>
+        <p>{{ step.text }}</p>
+      </li>
+      {% endfor %}
+    </ol>
+  </div>
+</section>
+
+<section class="section alt" id="freelances">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Pour les indépendants</p>
+      <h2>Un PC prêt pour votre activité freelance.</h2>
+      <p>Pas besoin de passer des heures à installer Windows, chercher les pilotes ou configurer vos logiciels. Nous préparons votre ordinateur pour que vous puissiez vous concentrer sur votre travail.</p>
+    </header>
+    <div class="cards-profiles">
+      {% for profile in profiles %}
+      <article class="card reveal">
+        <h3>{{ profile.name }}</h3>
+        <div class="chips">
+          {% for t in profile.tools %}
+          <span class="chip">{{ t }}</span>
+          {% endfor %}
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="center-cta">
+      <a class="btn btn-primary" href="#demande">Demander une installation</a>
+      <a class="btn btn-instagram" href="https://instagram.com/sugar_ray_leo_25" target="_blank" rel="noopener">Contacter sur Instagram</a>
+    </p>
+  </div>
+</section>
+
+<section class="section" id="dakar">
+  <div class="container dakar-grid">
+    <div>
+      <p class="eyebrow">Local</p>
+      <h2>Intervention à Dakar</h2>
+      <p class="lead">Service informatique avec base à Dieuppeul 2, disponible dans toute la région de Dakar.</p>
+      <p>Déplacement à domicile selon le quartier, ou assistance à distance lorsque c'est possible. Notre base à Dieuppeul 2 nous permet d'intervenir rapidement dans tout Dakar et ses environs.</p>
+      <h3 class="h-small">Zones desservies</h3>
+      <ul class="area-list">
+        {% for area in areas %}
+        <li{% if area == "Dieuppeul 2" %} style="background: var(--accent-light); border-color: var(--accent); color: var(--accent); font-weight: 600;"{% endif %}>{{ area }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div class="map-panel" aria-hidden="true">
+      {% include "components/dakar-map.html" %}
+      <p class="map-caption">Péninsule de Dakar — interventions sur place et autour de l'agglomération.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="avis">
+  <div class="container">
+    <header class="section-head">
+      <p class="eyebrow">Preuves sociales</p>
+      <h2>Ils nous font confiance</h2>
+      {% if testimonials_demo %}
+      <p class="demo-banner" role="note">Témoignages de démonstration — à remplacer par de vrais avis clients avant publication.</p>
+      {% endif %}
+    </header>
+    <div class="cards-3">
+      {% for t in testimonials %}
+      <blockquote class="card quote reveal">
+        <p class="stars" aria-label="{{ t.stars }} sur 5">{{ '★' * t.stars }}{{ '☆' * (5 - t.stars) }}</p>
+        <p>{{ t.comment }}</p>
+        <footer><strong>{{ t.first_name }}</strong> · {{ t.activity }}</footer>
+      </blockquote>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section" id="faq">
+  <div class="container narrow">
+    <header class="section-head">
+      <p class="eyebrow">Questions</p>
+      <h2>FAQ</h2>
+    </header>
+    <div class="faq-list">
+      {% for item in faq %}
+      <details class="faq-item">
+        <summary>{{ item.q }}</summary>
+        <p>{{ item.a }}</p>
+      </details>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+<section class="section alt" id="demande">
+  <div class="container narrow">
+    <header class="section-head">
+      <p class="eyebrow">Devis</p>
+      <h2>Demander une prestation</h2>
+      <p>Décrivez votre PC et votre besoin. Vous recevrez une confirmation par email après l'envoi.</p>
+    </header>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+      {% if messages %}
+      <ul class="flash" role="alert">
+        {% for cat, msg in messages %}
+        <li class="{{ cat }}">{{ msg }}</li>
+        {% endfor %}
+      </ul>
+      {% endif %}
+    {% endwith %}
+    <form class="card form" id="service-form" method="post" action="{{ url_for('demande') }}" novalidate>
+      <div class="form-grid">
+        <label>Nom
+          <input type="text" name="name" required autocomplete="name" minlength="2">
+        </label>
+        <label>Numéro WhatsApp
+          <input type="tel" name="whatsapp" required autocomplete="tel" placeholder="77 000 00 00">
+        </label>
+        <label>Type d'appareil
+          <select name="device_type">
+            <option value="">Choisir</option>
+            <option>Ordinateur portable</option>
+            <option>PC de bureau</option>
+            <option>All-in-one</option>
+            <option>Autre</option>
+          </select>
+        </label>
+        <label>Marque du PC
+          <input type="text" name="brand" placeholder="HP, Dell, Lenovo, Asus…">
+        </label>
+        <label>Modèle
+          <input type="text" name="model">
+        </label>
+        <label>Service souhaité
+          <select name="service" id="service-select" required>
+            <option value="">Choisir un service</option>
+            {% for value, label in service_options %}
+            <option value="{{ value }}">{{ label }}</option>
+            {% endfor %}
+          </select>
+        </label>
+        <label class="full">Logiciels souhaités
+          <textarea name="software" rows="2" placeholder="Ex. Office, VS Code, Zoom, Figma…"></textarea>
+        </label>
+        <label>Version de Windows actuelle
+          <select name="windows_version">
+            <option value="">Je ne sais pas</option>
+            <option>Windows 10</option>
+            <option>Windows 11</option>
+            <option>Windows 8 / 8.1</option>
+            <option>Windows 7</option>
+            <option>Autre / aucun</option>
+          </select>
+        </label>
+        <label>Intervention
+          <select name="intervention">
+            <option value="">À préciser</option>
+            <option>À domicile</option>
+            <option>À distance</option>
+            <option>Peu importe</option>
+          </select>
+        </label>
+        <label class="full">Problème rencontré
+          <textarea name="problem" rows="2" placeholder="PC lent, Windows corrompu, besoin d'une installation propre…"></textarea>
+        </label>
+        <label>Date souhaitée
+          <input type="date" name="date">
+        </label>
+        <label class="full">Message supplémentaire
+          <textarea name="message" rows="3"></textarea>
+        </label>
+      </div>
+      <p class="legal-note">En envoyant, vous acceptez d'être recontacté par email ou téléphone. Préparez une sauvegarde avant toute installation propre.</p>
+      <button class="btn btn-primary" type="submit">Envoyer ma demande</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script src="{{ url_for('static', filename='js/form.js') }}"></script>
+{% endblock %}

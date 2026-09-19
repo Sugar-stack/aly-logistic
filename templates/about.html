@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block title %}À propos - Informaticien Dakar | {{ company }} | Installation Windows Dieuppeul 2{% endblock %}
+{% block canonical %}{{ site_url }}/a-propos{% endblock %}
+
+{% block content %}
+<section class="section page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">{{ company }} - Dakar</p>
+    <h1>À propos de notre service informatique à Dakar</h1>
+    <p class="lead">Expert en installation Windows, logiciels et optimisation PC basé à Dieuppeul 2, Dakar. Service professionnel pour particuliers et entreprises.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container prose">
+    <h2>Notre expertise informatique à Dakar</h2>
+    <p>{{ company }} est votre partenaire informatique de confiance à Dakar. Nous spécialisons dans l'installation propre de Windows 10 et Windows 11, la configuration de logiciels professionnels, l'optimisation de performances PC et la maintenance informatique complète.</p>
+
+    <h2>Services d'installation Windows à Dakar</h2>
+    <p>Nous intervenons dans tout Dakar pour l'installation de Windows sur ordinateurs portables et PC de bureau. Que vous soyez à Dieuppeul 2, Dakar-Plateau, Mermoz, Sacré-Cœur ou dans les autres quartiers de Dakar, notre informaticien se déplace à domicile pour une installation professionnelle.</p>
+
+    <h2>Installation de logiciels professionnels</h2>
+    <p>Configuration complète de logiciels bureautiques (Microsoft Office), outils de développement, logiciels de design, et applications métier spécifiques. Nous assurons l'installation avec licences valides et configuration optimale pour votre activité.</p>
+
+    <h2>Optimisation et maintenance PC à Dakar</h2>
+    <p>Votre ordinateur est lent ? Nous diagnostiquons et résolvons les problèmes de performance : nettoyage disque, optimisation démarrage, suppression de logiciels inutiles, mise à jour des pilotes. Service rapide à Dakar et environs.</p>
+
+    <h2>Zone d'intervention : Dakar et environs</h2>
+    <p>Notre informaticien intervient dans toute la région de Dakar : Dieuppeul 2, Dakar-Plateau, Almadies, Ngor, Ouakam, Mermoz, Sacré-Cœur, Point E, Fann, Liberté, Grand Dakar, Parcelles Assainies, Guédiawaye, Pikine, Rufisque. Intervention à domicile ou assistance à distance selon vos besoins.</p>
+
+    <h2>Pourquoi choisir {{ company }} à Dakar ?</h2>
+    <ul>
+      <li><strong>Expertise locale</strong> : Informaticien professionnel basé à Dakar, connaissant parfaitement les besoins des locaux</li>
+      <li><strong>Service rapide</strong> : Intervention rapide dans tout Dakar, diagnostics efficaces</li>
+      <li><strong>Prix transparents</strong> : Tarifs clairs, devis gratuit après diagnostic</li>
+      <li><strong>Licences officielles</strong> : Installation Windows et logiciels avec licences valides uniquement</li>
+      <li><strong>Support réactif</strong> : Contact par email et Instagram, réponse rapide</li>
+    </ul>
+
+    <h2>Nos engagements</h2>
+    <p>Chez {{ company }}, nous nous engageons à fournir un service informatique de qualité à Dakar. Installation propre de Windows, configuration personnalisée selon vos besoins, optimisation des performances, et suivi après intervention. Votre satisfaction est notre priorité.</p>
+
+    <p class="center-cta">
+      <a class="btn btn-primary" href="{{ url_for('index') }}#demande">Demander un devis gratuit</a>
+      <a class="btn btn-instagram" href="https://instagram.com/sugar_ray_leo_25" target="_blank" rel="noopener">Contactez sur Instagram</a>
+    </p>
+  </div>
+</section>
+{% endblock %}

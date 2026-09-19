@@ -1,0 +1,29 @@
+<header class="site-header" id="site-header">
+  <div class="container header-inner">
+    <a class="logo" href="{{ url_for('index') }}#accueil" aria-label="{{ company }} — accueil">
+      <span class="logo-mark" aria-hidden="true">{{ initials }}</span>
+      <span class="logo-text">
+        <strong>{{ company }}</strong>
+        <small>Dieuppeul 2 · Windows &amp; logiciels</small>
+      </span>
+    </a>
+    <nav class="nav-desktop" aria-label="Navigation principale">
+      {% for item in nav %}
+      <a href="{{ item.href }}">{{ item.label }}</a>
+      {% endfor %}
+    </nav>
+    <div class="header-actions">
+      <a class="btn btn-instagram btn-sm hide-sm" href="https://instagram.com/sugar_ray_leo_25" target="_blank" rel="noopener">Instagram</a>
+      <a class="btn btn-primary btn-sm" href="{{ url_for('index') }}#demande">Demander une installation</a>
+      <button class="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-mobile" aria-label="Ouvrir le menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </div>
+  <nav class="nav-mobile" id="nav-mobile" hidden>
+    {% for item in nav %}
+    <a href="{{ item.href }}">{{ item.label }}</a>
+    {% endfor %}
+    <a class="btn btn-primary" href="{{ url_for('index') }}#demande">Demander une installation</a>
+  </nav>
+</header>

@@ -1,0 +1,42 @@
+<footer class="site-footer" id="contact">
+  <div class="container footer-grid">
+    <div>
+      <p class="logo footer-logo">
+        <span class="logo-mark" aria-hidden="true">{{ initials }}</span>
+        <span class="logo-text">
+          <strong>{{ company }}</strong>
+          <small>{{ tagline }}</small>
+        </span>
+      </p>
+      <p class="muted">Installation Windows, logiciels professionnels, optimisation et assistance pour freelances à Dakar.</p>
+    </div>
+    <div>
+      <h2>Liens</h2>
+      <ul class="footer-links">
+        {% for item in nav %}
+        <li><a href="{{ item.href }}">{{ item.label }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+    <div>
+      <h2>Contact</h2>
+      <ul class="footer-links">
+        <li><a href="{{ whatsapp_url }}" target="_blank" rel="noopener">WhatsApp</a></li>
+        <li><a href="tel:{{ phone_tel }}">{{ phone_display }}</a></li>
+        <li><a href="mailto:{{ email }}">{{ email }}</a></li>
+        <li>{{ city }}</li>
+      </ul>
+      {% if social %}
+      <p class="social">
+        {% for name, url in social.items() %}
+        <a href="{{ url }}" target="_blank" rel="noopener" aria-label="{{ name }}">{{ name }}</a>
+        {% endfor %}
+      </p>
+      {% endif %}
+    </div>
+  </div>
+  <div class="container footer-bottom">
+    <p>© {{ year }} {{ company }}. Tous droits réservés.</p>
+    <p class="muted">Windows et les noms de logiciels cités appartiennent à leurs éditeurs respectifs.</p>
+  </div>
+</footer>

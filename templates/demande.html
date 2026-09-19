@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}Demande envoyée | {{ company }}{% endblock %}
+
+{% block content %}
+<section class="section page-hero">
+  <div class="container narrow">
+    <p class="eyebrow">Récapitulatif</p>
+    <h1>Votre demande est prête</h1>
+    <p class="lead">Vérifiez le résumé, puis ouvrez WhatsApp pour l'envoyer à {{ company }}.</p>
+  </div>
+</section>
+<section class="section">
+  <div class="container narrow">
+    <article class="card summary">
+      <dl>
+        {% for key, label in labels.items() %}
+          {% set value = service_label if key == 'service' else form[key] %}
+          {% if value %}
+          <dt>{{ label }}</dt>
+          <dd>{{ value }}</dd>
+          {% endif %}
+        {% endfor %}
+      </dl>
+      <a class="btn btn-instagram" id="wa-send" href="https://instagram.com/sugar_ray_leo_25" target="_blank" rel="noopener">Contacter sur Instagram</a>
+      <p class="muted">Si WhatsApp ne s'ouvre pas automatiquement, utilisez le bouton ci-dessus.</p>
+    </article>
+  </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+  window.addEventListener("load", function () {
+    var link = document.getElementById("wa-send");
+    if (link) {
+      window.setTimeout(function () { window.open(link.href, "_blank", "noopener"); }, 600);
+    }
+  });
+</script>
+{% endblock %}
