@@ -77,7 +77,7 @@ PRICES = {
     "software": {
         "id": "software",
         "name": "Installation de logiciels",
-        "from_amount": 3000,
+        "from_amount": 4000,
         "unit": " / logiciel",
         "highlight": False,
         "features": [
