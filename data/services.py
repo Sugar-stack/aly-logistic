@@ -4,7 +4,7 @@ SERVICES = [
     {
         "id": "windows",
         "icon": "windows",
-        "name": "Installation Windows",
+        "name": "Installation Windows + pilotes + configuration de base",
         "summary": (
             "Installation propre de Windows avec configuration complète du système, "
             "pilotes, mises à jour et paramètres essentiels."
