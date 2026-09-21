@@ -3,6 +3,9 @@ from datetime import datetime
 import os
 from dotenv import load_dotenv
 from openai import OpenAI
+load_dotenv()
+
+client = OpenAI(api_key=os.getenv("AI_API_KEY"))
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mail import Mail, Message
