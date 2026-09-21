@@ -138,4 +138,4 @@ SEO_KEYWORDS = (
     "support informatique Sénégal, technicien informatique Dakar"
 )
 
-SITE_URL = "https://aly-tech.vercel.app/"
+SITE_URL = "https://aly-tech.vercel.app"
