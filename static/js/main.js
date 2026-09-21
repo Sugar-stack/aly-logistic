@@ -44,3 +44,85 @@
     header.style.boxShadow = window.scrollY > 10 ? "0 4px 20px rgba(0,0,0,.1)" : "none";
   });
 })();
+
+// =========================
+// ASSISTANT IA ALY TECH
+// =========================
+
+const aiChatToggle = document.getElementById("ai-chat-toggle");
+const aiChatWindow = document.getElementById("ai-chat-window");
+const aiChatClose = document.getElementById("ai-chat-close");
+const aiChatForm = document.getElementById("ai-chat-form");
+const aiChatInput = document.getElementById("ai-chat-input");
+const aiChatMessages = document.getElementById("ai-chat-messages");
+
+if (
+    aiChatToggle &&
+    aiChatWindow &&
+    aiChatClose &&
+    aiChatForm &&
+    aiChatInput &&
+    aiChatMessages
+) {
+    aiChatToggle.addEventListener("click", () => {
+        aiChatWindow.classList.toggle("active");
+
+        if (aiChatWindow.classList.contains("active")) {
+            aiChatInput.focus();
+        }
+    });
+
+    aiChatClose.addEventListener("click", () => {
+        aiChatWindow.classList.remove("active");
+    });
+
+    aiChatForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const message = aiChatInput.value.trim();
+
+        if (!message) return;
+
+        const userMessage = document.createElement("div");
+        userMessage.className = "user-message";
+        userMessage.textContent = message;
+
+        aiChatMessages.appendChild(userMessage);
+        aiChatInput.value = "";
+
+        const loadingMessage = document.createElement("div");
+        loadingMessage.className = "ai-message";
+        loadingMessage.textContent = "Je réfléchis...";
+        aiChatMessages.appendChild(loadingMessage);
+
+        aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+
+        try {
+            const response = await fetch("/api/chat", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    message: message
+                })
+            });
+
+            const data = await response.json();
+
+            loadingMessage.remove();
+
+            const aiMessage = document.createElement("div");
+            aiMessage.className = "ai-message";
+            aiMessage.textContent = data.reply || "Une erreur est survenue.";
+
+            aiChatMessages.appendChild(aiMessage);
+
+        } catch (error) {
+            loadingMessage.textContent =
+                "Impossible de contacter l'assistant pour le moment.";
+        }
+
+        aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
+    });
+}
