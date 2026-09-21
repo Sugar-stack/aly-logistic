@@ -51,7 +51,7 @@ WHATSAPP_DEFAULT_MESSAGE = (
 PRICES = {
     "windows": {
         "id": "windows",
-        "name": "Installation Windows",
+        "name": "Installation Windows + pilotes + configuration de base",
         "from_amount": 7000,
         "unit": "",
         "highlight": False,
