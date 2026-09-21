@@ -2,6 +2,7 @@ from urllib.parse import quote
 from datetime import datetime
 import os
 from dotenv import load_dotenv
+from openai import OpenAI
 
 from flask import Flask, render_template, request, redirect, url_for, flash
 from flask_mail import Mail, Message
