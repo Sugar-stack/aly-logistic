@@ -212,6 +212,10 @@ Envoyé le: {datetime.now().strftime('%d/%m/%Y à %H:%M')}
         flash(f"Erreur lors de l'envoi : {str(e)}. Veuillez réessayer ou nous contacter directement.", "error")
         return redirect(url_for("index") + "#demande")
 
+@app.route("/google9d9acce89fea0c42.html")
+def google_verification():
+    return open("google9d9acce89fea0c42.html").read()
+
 
 @app.route("/robots.txt")
 def robots():
