@@ -221,6 +221,53 @@ def google_verification():
     return open("google9d9acce89fea0c42.html").read()
 
 
+@app.route("/api/chat", methods=["POST"])
+def chat():
+    try:
+        data = request.get_json()
+        user_message = data.get("message", "").strip()
+
+        if not user_message:
+            return {"error": "Message vide."}, 400
+
+        response = client.responses.create(
+            model="gpt-5.6-luna",
+            instructions="""
+Tu es l'assistant IA officiel de Aly Tech, un service informatique
+basé à Dakar, Sénégal.
+
+Tu aides les visiteurs concernant :
+- installation Windows
+- installation de logiciels
+- optimisation PC
+- configuration informatique
+- Pack Freelance
+- assistance informatique
+- tarifs et prestations de Aly Tech
+
+Réponds en français de manière professionnelle, simple et naturelle.
+
+Ne fabrique jamais un prix ou une prestation.
+Si tu ne connais pas une information, indique-le clairement
+et propose au visiteur de contacter Aly Tech.
+
+Si le visiteur souhaite une prestation, oriente-le vers
+la demande de prestation disponible sur le site.
+""",
+            input=user_message
+        )
+
+        return {
+            "reply": response.output_text
+        }
+
+    except Exception as e:
+        return {
+            "error": "Une erreur est survenue.",
+            "details": str(e)
+        }, 500
+
+
 @app.route("/robots.txt")
 def robots():
     return (
