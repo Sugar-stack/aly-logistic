@@ -287,6 +287,41 @@
     </form>
   </div>
 </section>
+
+<!-- Assistant IA Aly Tech -->
+<div class="ai-chat" id="ai-chat">
+    <button class="ai-chat-toggle" id="ai-chat-toggle" aria-label="Ouvrir l'assistant IA">
+        🤖
+        <span>Assistant Aly Tech</span>
+    </button>
+
+    <div class="ai-chat-window" id="ai-chat-window">
+        <div class="ai-chat-header">
+            <div>
+                <strong>🤖 Assistant Aly Tech</strong>
+                <small>Votre assistant informatique</small>
+            </div>
+            <button id="ai-chat-close" aria-label="Fermer">×</button>
+        </div>
+
+        <div class="ai-chat-messages" id="ai-chat-messages">
+            <div class="ai-message">
+                Bonjour 👋 Je suis l'assistant Aly Tech.
+                Comment puis-je vous aider ?
+            </div>
+        </div>
+
+        <form class="ai-chat-form" id="ai-chat-form">
+            <input
+                type="text"
+                id="ai-chat-input"
+                placeholder="Posez votre question..."
+                autocomplete="off"
+            >
+            <button type="submit">➤</button>
+        </form>
+    </div>
+</div>
 {% endblock %}
 
 {% block scripts %}
