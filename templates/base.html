@@ -8,7 +8,7 @@
   <meta name="keywords" content="{{ seo_keywords }}">
   <meta name="author" content="{{ company }}">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="{% block canonical %}{{ site_url }}/{% endblock %}">
+  <link rel="canonical" href="{% block canonical %}{{ request.base_url }}{% endblock %}">
 
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website">
