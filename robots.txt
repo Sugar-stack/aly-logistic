@@ -3,4 +3,4 @@ Allow: /
 Disallow: /demande
 Disallow: /admin
 
-Sitemap: https://alylogistic.sn/sitemap.xml
+Sitemap: https://aly-tech.vercel.app/sitemap.xml
