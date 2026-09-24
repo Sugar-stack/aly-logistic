@@ -7,6 +7,8 @@ from openai import OpenAI
 load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
+def get_db_connection():
+    return psycopg.connect(DATABASE_URL)
 client = OpenAI(api_key=os.getenv("AI_API_KEY"))
 
 from flask import Flask, render_template, request, redirect, url_for, flash
@@ -534,6 +536,75 @@ MESSAGE DU VISITEUR
         return {
             "error": "Une erreur est survenue avec l'assistant."
         }, 500
+
+@app.route("/api/reviews", methods=["GET", "POST"])
+def reviews():
+    try:
+        conn = get_db_connection()
+
+        if request.method == "GET":
+            with conn.cursor() as cur:
+                cur.execute("""
+                    SELECT id, name, rating, comment, created_at
+                    FROM reviews
+                    WHERE approved = TRUE
+                    ORDER BY created_at DESC
+                """)
+
+                reviews = cur.fetchall()
+
+            conn.close()
+
+            return {
+                "reviews": [
+                    {
+                        "id": review[0],
+                        "name": review[1],
+                        "rating": review[2],
+                        "comment": review[3],
+                        "created_at": review[4].isoformat()
+                    }
+                    for review in reviews
+                ]
+            }
+
+        data = request.get_json() or {}
+
+        name = data.get("name", "").strip()
+        comment = data.get("comment", "").strip()
+        rating = data.get("rating")
+
+        if not name or not comment or not rating:
+            conn.close()
+            return {"error": "Tous les champs sont obligatoires."}, 400
+
+        try:
+            rating = int(rating)
+        except (TypeError, ValueError):
+            conn.close()
+            return {"error": "La note doit être comprise entre 1 et 5."}, 400
+
+        if rating < 1 or rating > 5:
+            conn.close()
+            return {"error": "La note doit être comprise entre 1 et 5."}, 400
+
+        with conn.cursor() as cur:
+            cur.execute("""
+                INSERT INTO reviews (name, rating, comment, approved)
+                VALUES (%s, %s, %s, FALSE)
+            """, (name, rating, comment))
+
+        conn.commit()
+        conn.close()
+
+        return {
+            "success": True,
+            "message": "Merci ! Votre avis sera publié après validation."
+        }, 201
+
+    except Exception as e:
+        print("Erreur avis :", e)
+        return {"error": "Impossible d'enregistrer l'avis."}, 500
 @app.route("/robots.txt")
 def robots():
     return (
