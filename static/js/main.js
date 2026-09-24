@@ -181,3 +181,56 @@ function escapeHtml(text) {
 }
 
 loadRealReviews();
+
+// =========================
+// ENVOI D'UN AVIS CLIENT
+// =========================
+
+const reviewForm = document.getElementById("review-form");
+const reviewMessage = document.getElementById("review-message");
+
+if (reviewForm && reviewMessage) {
+    reviewForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+
+        const name = document.getElementById("review-name").value.trim();
+        const rating = document.getElementById("review-rating").value;
+        const comment = document.getElementById("review-comment").value.trim();
+
+        if (!name || !rating || !comment) {
+            reviewMessage.textContent = "Veuillez remplir tous les champs.";
+            return;
+        }
+
+        reviewMessage.textContent = "Envoi de votre avis...";
+
+        try {
+            const response = await fetch("/api/reviews", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify({
+                    name: name,
+                    rating: rating,
+                    comment: comment
+                })
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.error || "Une erreur est survenue.");
+            }
+
+            reviewMessage.textContent = data.message;
+
+            reviewForm.reset();
+
+        } catch (error) {
+            console.error("Erreur envoi avis :", error);
+            reviewMessage.textContent =
+                "Impossible d'envoyer votre avis pour le moment.";
+        }
+    });
+}
