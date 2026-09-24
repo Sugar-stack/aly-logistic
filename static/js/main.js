@@ -126,3 +126,58 @@ if (
         aiChatMessages.scrollTop = aiChatMessages.scrollHeight;
     });
 }
+
+// =========================
+// AVIS CLIENTS — NEON
+// =========================
+
+async function loadRealReviews() {
+    const reviewsContainer = document.getElementById("real-reviews");
+
+    if (!reviewsContainer) return;
+
+    try {
+        const response = await fetch("/api/reviews");
+
+        if (!response.ok) {
+            throw new Error("Erreur lors du chargement des avis");
+        }
+
+        const data = await response.json();
+
+        reviewsContainer.innerHTML = "";
+
+        data.reviews.forEach(review => {
+            const article = document.createElement("blockquote");
+            article.className = "card quote reveal";
+
+            const stars = "★".repeat(review.rating) +
+                          "☆".repeat(5 - review.rating);
+
+            article.innerHTML = `
+                <p class="stars" aria-label="${review.rating} sur 5">
+                    ${stars}
+                </p>
+
+                <p>${escapeHtml(review.comment)}</p>
+
+                <footer>
+                    <strong>${escapeHtml(review.name)}</strong>
+                </footer>
+            `;
+
+            reviewsContainer.appendChild(article);
+        });
+
+    } catch (error) {
+        console.error("Erreur avis :", error);
+    }
+}
+
+function escapeHtml(text) {
+    const div = document.createElement("div");
+    div.textContent = text;
+    return div.innerHTML;
+}
+
+loadRealReviews();
